@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  spark:
+    image: jupyter/pyspark-notebook:spark-2
+    ports:
+      - '8888:8888'
+    volumes:
+      - /mnt/jupyter:/home/jovyan/jupyter
+      
+  memsql:
+    image: 'memsql/cluster-in-a-box'
+    ports:
+      - 3306:3306
+      - 8080:8080
+    environment:
+      LICENSE_KEY: 'YOUR_LICENSE_KEY'
+      START_AFTER_INIT: 'Y'
+
+  sqlserver:
+    image: 'mcr.microsoft.com/mssql/server:2019-latest'
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: P@SSw0rd.
